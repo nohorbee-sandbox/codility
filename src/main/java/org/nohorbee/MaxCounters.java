@@ -9,18 +9,21 @@ public class MaxCounters {
 
         int[] counters = new int[N];
         int maxCounter = 0;
+        int lastMaxCounter = 0;
 
         for(int K : A) {
             if(K>=1 && K<=N) {
-                counters[K-1]++;
+                counters[K-1] = Integer.max(counters[K-1],lastMaxCounter)+1;
                 maxCounter = Integer.max(counters[K-1], maxCounter);
             } else {
                 if(K==N+1) {
-                    for (int i=0;i<counters.length;i++) {
-                        counters[i] = maxCounter;
-                    }
+                    lastMaxCounter = maxCounter;
                 }
             }
+        }
+
+        for (int i=0;i<counters.length;i++) {
+            counters[i] = Integer.max(lastMaxCounter, counters[i]);
         }
 
         return counters;
