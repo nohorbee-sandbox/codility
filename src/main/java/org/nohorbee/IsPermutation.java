@@ -1,4 +1,4 @@
-package codility;
+package org.nohorbee;
 
 /**
  * Created by nohorbee on 22/08/16.
@@ -6,7 +6,15 @@ package codility;
 public class IsPermutation {
 
     public int solution (int[] A) {
-        return 0;
+        int sumPerm = 0;
+        int sumArr= 0;
+        for(int i=0;i<A.length;i++) {
+            sumPerm ^= (i+1);
+            sumArr ^= A[i];
+        }
+
+        return (sumPerm==sumArr ? 1 : 0);
+
     }
 
 }
